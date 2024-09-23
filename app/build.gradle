@@ -1,0 +1,76 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidx.navigation.safe.args)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
+}
+
+android {
+    namespace 'com.example.mealapp'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.mealapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    //navigation
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+
+    //dagger hilt
+    implementation libs.hilt.android
+    kapt libs.hilt.android.compiler
+    kapt libs.hilt.compiler
+    implementation libs.hilt.navigation
+
+    //lifecycle
+    implementation libs.lifecycle.viewmodel
+    implementation libs.lifecycle.livedata
+
+    //retrofit
+    implementation libs.retrofit
+    implementation libs.retrofit.converter.gson
+    implementation libs.code.gson
+    implementation libs.retrofit.converter.moshi
+    implementation libs.retrofit.kotlin.coroutines
+    implementation libs.moshi
+    implementation libs.moshi.kotlin
+    implementation libs.glide
+}
