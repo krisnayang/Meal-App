@@ -7,16 +7,32 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mealapp.ui.HomeFragment"
         android:label="HomeFragment" >
+        <argument
+            android:name="item"
+            app:argType="string"
+            android:defaultValue="Category"/>
         <action
             android:id="@+id/action_homeToMealByCategory"
             app:destination="@id/homeFragment">
-
             <argument
-                android:name="source"
-                app:argType="string" />
-            <argument
-                android:name="category"
+                android:name="item"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment">
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.example.mealapp.ui.MealDetailFragment"
+        android:label="MealDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

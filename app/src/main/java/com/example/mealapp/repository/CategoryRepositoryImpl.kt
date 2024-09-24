@@ -14,6 +14,6 @@ class CategoryRepositoryImpl @Inject constructor(
 ): CategoryResository {
 
   override suspend fun getCategory(): Flow<CategoriesResponse> {
-    return withContext(Dispatchers.IO) { flow { emit(api.getCategoryList()) } }
+    return flow { emit(api.getCategoryList()) }
   }
 }
