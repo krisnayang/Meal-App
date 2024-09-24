@@ -7,15 +7,15 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mealapp.ui.HomeFragment"
         android:label="HomeFragment" >
+        <argument
+            android:name="item"
+            app:argType="string"
+            android:defaultValue="Category"/>
         <action
             android:id="@+id/action_homeToMealByCategory"
             app:destination="@id/homeFragment">
-
             <argument
-                android:name="source"
-                app:argType="string" />
-            <argument
-                android:name="category"
+                android:name="item"
                 app:argType="string" />
         </action>
     </fragment>
