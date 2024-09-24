@@ -17,4 +17,8 @@ class MealRepositoryImpl @Inject constructor(
   override suspend fun getTopMeals(): Flow<MealsResponse> {
     return flow { emit(api.getTopMeals()) }
   }
+
+  override suspend fun getMealById(id: Int): Flow<MealsResponse> {
+    return flow { emit(api.getMealById(id)) }
+  }
 }

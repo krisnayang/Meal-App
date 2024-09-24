@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealapp.R
 import com.example.mealapp.data.CategoryResponse
@@ -52,7 +53,8 @@ class HomeFragment: Fragment(R.layout.layout_fragment_home) {
     val source = navigationArgs.item
 
     if (source.compareTo("Category") == 0) {
-      viewBinding.tvTitle.visibility = View.GONE
+      viewBinding.tvRecommend.visibility = View.VISIBLE
+      viewBinding.tvTitle.text = "Category"
       categoryAdapter = CategoryListAdapter { item ->
         val action = HomeFragmentDirections.actionHomeToMealByCategory(item.strCategory)
         findNavController().navigate(action)
@@ -65,17 +67,18 @@ class HomeFragment: Fragment(R.layout.layout_fragment_home) {
         adapter = categoryAdapter
       }
     } else {
-      viewBinding.tvTitle.visibility = View.VISIBLE
+      viewBinding.tvRecommend.visibility = View.GONE
       viewBinding.rvCategoryList.visibility = View.GONE
       viewBinding.tvTitle.text = source
       mealViewModel.getMealListByCategory(source)
     }
     mealAdapter = MealListAdapter { item ->
-
+      val action = HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(item.idMeal)
+      findNavController().navigate(action)
     }
     setupMeals(mealViewModel)
     viewBinding.rvMealList.apply {
-      layoutManager = LinearLayoutManager(context)
+      layoutManager = GridLayoutManager(context, 2)
       adapter = mealAdapter
     }
 

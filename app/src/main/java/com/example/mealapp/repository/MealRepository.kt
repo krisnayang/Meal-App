@@ -8,4 +8,6 @@ interface MealRepository {
   suspend fun getMealsByCategory(category: String): Flow<MealsResponse>
 
   suspend fun getTopMeals(): Flow<MealsResponse>
+
+  suspend fun getMealById(id: Int): Flow<MealsResponse>
 }

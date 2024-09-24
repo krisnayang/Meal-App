@@ -39,4 +39,14 @@ class MealViewModel @Inject constructor(
       _mealList.value = Error(errorMessage = e.toString())
     }
   }
+
+  fun getMealById(id: Int) = viewModelScope.launch {
+    try {
+      mealRepository.getMealById(id).collect { meal ->
+        _mealList.value = Success (value = meal.meals.orEmpty().first())
+      }
+    } catch (e: Exception) {
+      _mealList.value = Error(errorMessage = e.toString())
+    }
+  }
 }
